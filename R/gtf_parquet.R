@@ -47,7 +47,7 @@
 #' @examples
 #' \dontrun{
 #' # Create from Parquet directory
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' 
 #' # Extract genes with full attributes
 #' gr <- genes(gtf)
@@ -75,7 +75,7 @@ setClass("GTFParquet",
 #' @return A GTFParquet S4 object
 #' @export
 #' @examples
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' genes(gtf)
 #' genes(gtf, filter = list(gene_type = "protein_coding"))
 GTFParquet <- function(path) {
@@ -228,7 +228,7 @@ setMethod("genome", "GTFParquet", function(x) {
 #'
 #' @examples
 #' \dontrun{
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #'
 #' # Extract all genes with full attributes
 #' gr <- genes(gtf)
@@ -483,7 +483,7 @@ setMethod("cds", "GTFParquet", function(x, columns = NULL, filter = NULL) {
 #'
 #' @examples
 #' \dontrun{
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #'
 #' # Exons grouped by transcript (sorted by exon_number)
 #' ebt <- exonsBy(gtf, by = "tx")
@@ -668,7 +668,7 @@ setMethod("seqinfo", "GTFParquet", function(x) {
 #'
 #' @examples
 #' \dontrun{
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' 
 #' # 5' UTRs
 #' utr5 <- utrs(gtf, type = "5prime")
@@ -803,7 +803,7 @@ setMethod("codons", "GTFParquet", function(x, type = c("both", "start", "stop"),
 #'
 #' @examples
 #' \dontrun{
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' pc <- protein_coding_genes(gtf)
 #' lnc <- lncRNA_genes(gtf)
 #' }
@@ -834,7 +834,7 @@ lncRNA_genes <- function(x, ...) {
 #'
 #' @examples
 #' \dontrun{
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' gene_types(gtf)
 #' # protein_coding      lncRNA     pseudogene ...
 #' #         19950        16880          15200 ...
@@ -880,7 +880,7 @@ transcript_types <- function(x) {
 #'
 #' @examples
 #' \dontrun{
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' gtf_metadata(gtf)
 #' #      provider         format           date         genome 
 #' #      "GENCODE"          "gtf"   "2025-07-08"       "GRCh38"
@@ -920,7 +920,7 @@ gtf_metadata <- function(x) {
 #'
 #' @examples
 #' \dontrun{
-#' gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+#' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' 
 #' # Define a query region
 #' region <- GRanges("chr1", IRanges(1000000, 2000000))

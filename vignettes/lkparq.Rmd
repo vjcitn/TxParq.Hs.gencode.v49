@@ -1,11 +1,11 @@
 ---
-title: "lkparq: claude-based parquet transformation of TxDb from Gencode v49"
+title: "TxParq.Hs.gencode.v49: Parquet transformation of TxDb.Hs with Gencode v49"
 shorttitle: "outlier dytection methods"
 author: "Vincent J. Carey, stvjc at channing.harvard.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{lkparq: claude-based parquet transformation of TxDb from Gencode v49}
+  %\VignetteIndexEntry{TxParq.Hs.gencode.v49: Parquet transformation of TxDb.Hs with Gencode v49}
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
@@ -29,8 +29,8 @@ Anthropic Claude Opus 4.5 in March of 2026.
 library(GenomicRanges)
 library(arrow)
 library(dplyr)
-library(lkparq)
-parqloc = system.file("gc49", package="lkparq")
+library(TxParq.Hs.gencode.v49)
+parqloc = system.file("gc49", package="TxParq.Hs.gencode.v49")
 ```
 
 
