@@ -16,17 +16,18 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/vjcitn/lkparq/blob/HEAD/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/vjcitn/TxParq.Hs.gencode.v49/blob/HEAD/DESCRIPTION)
 
-Carey V (2026). *lkparq: parquet for txdb*. R package version 0.0.2,
-<https://github.com/vjcitn/lkparq>.
+Carey V (2026). *TxParq.Hs.gencode.v49: Parquet-based representation of
+GENCODE gene models v49 for Homo sapiens*. R package version 0.99.0,
+<https://github.com/vjcitn/TxParq.Hs.gencode.v49>.
 
     @Manual{,
-      title = {lkparq: parquet for txdb},
+      title = {TxParq.Hs.gencode.v49: Parquet-based representation of GENCODE gene models v49 for Homo sapiens},
       author = {Vince Carey},
       year = {2026},
-      note = {R package version 0.0.2},
-      url = {https://github.com/vjcitn/lkparq},
+      note = {R package version 0.99.0},
+      url = {https://github.com/vjcitn/TxParq.Hs.gencode.v49},
     }
 
 </div>

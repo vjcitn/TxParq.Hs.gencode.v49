@@ -2,8 +2,8 @@ pandoc: '2.13'
 pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
-  lkparq: lkparq.html
-last_built: 2026-03-13T13:32Z
+  TxParq.Hs.gencode.v49: TxParq.Hs.gencode.v49.html
+last_built: 2026-05-12T13:00Z
 urls:
-  reference: https://github.com/vjcitn/lkparq/reference
-  article: https://github.com/vjcitn/lkparq/articles
+  reference: https://github.com/vjcitn/TxParq.Hs.gencode.v49/reference
+  article: https://github.com/vjcitn/TxParq.Hs.gencode.v49/articles

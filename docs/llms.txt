@@ -1,6 +1,6 @@
 <div id="main" class="col-md-9" role="main">
 
-# lkparq: Experimental R package with a TxDb-like resource for Gencode V49 for humans
+# TxParq.Hs.gencode.v49: Experimental R package with a TxDb-like resource for Gencode V49 for humans
 
 <div class="section level1">
 
@@ -67,8 +67,9 @@ methods of GenomicFeatures. The back end at present is parquet.
 
 </div>
 
--   [lkparq: claude-based parquet transformation of TxDb from Gencode
-    v49](https://github.com/vjcitn/lkparq/articles/lkparq.md):
+-   [TxParq.Hs.gencode.v49: Parquet transformation of TxDb.Hs with
+    Gencode
+    v49](https://github.com/vjcitn/TxParq.Hs.gencode.v49/articles/TxParq.Hs.gencode.v49.md):
 
 </div>
 

@@ -36,7 +36,7 @@ print(gtf)
 </div>
 
     ## GTFParquet object
-    ##   Path: /private/var/folders/yw/gfhgh7k565v9w83x_k764wbc0000gp/T/Rtmpo1i6Vp/temp_libpath100ff2f6ff879/TxParq.Hs.gencode.v49/gc49 
+    ##   Path: /private/var/folders/yw/gfhgh7k565v9w83x_k764wbc0000gp/T/RtmpnXV2z3/temp_libpath1036a90eecad/TxParq.Hs.gencode.v49/gc49 
     ##   Genome: GRCh38 
     ##   Available tables:
     ##     [x] genes
@@ -707,11 +707,11 @@ sessionInfo()
     ## [8] methods   base     
     ## 
     ## other attached packages:
-    ##  [1] TxParq.Hs.gencode.v49_0.0.2 dplyr_1.2.1                
-    ##  [3] arrow_24.0.0                GenomicRanges_1.64.0       
-    ##  [5] Seqinfo_1.2.0               IRanges_2.46.0             
-    ##  [7] S4Vectors_0.50.0            BiocGenerics_0.59.0        
-    ##  [9] generics_0.1.4              BiocStyle_2.40.0           
+    ##  [1] TxParq.Hs.gencode.v49_0.99.0 dplyr_1.2.1                 
+    ##  [3] arrow_24.0.0                 GenomicRanges_1.64.0        
+    ##  [5] Seqinfo_1.2.0                IRanges_2.46.0              
+    ##  [7] S4Vectors_0.50.0             BiocGenerics_0.59.0         
+    ##  [9] generics_0.1.4               BiocStyle_2.40.0            
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] tidyselect_1.2.1            blob_1.3.0                 

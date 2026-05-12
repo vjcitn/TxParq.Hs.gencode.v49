@@ -1,6 +1,6 @@
 <div id="main" class="col-md-9" role="main">
 
-# lkparq: Experimental R package with a TxDb-like resource for Gencode V49 for humans
+# TxParq.Hs.gencode.v49: Experimental R package with a TxDb-like resource for Gencode V49 for humans
 
 <div class="section level1">
 

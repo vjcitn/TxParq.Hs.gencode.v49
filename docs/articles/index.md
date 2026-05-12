@@ -10,8 +10,9 @@
 
 </div>
 
--   [lkparq: claude-based parquet transformation of TxDb from Gencode
-    v49](https://github.com/vjcitn/lkparq/articles/lkparq.md):
+-   [TxParq.Hs.gencode.v49: Parquet transformation of TxDb.Hs with
+    Gencode
+    v49](https://github.com/vjcitn/TxParq.Hs.gencode.v49/articles/TxParq.Hs.gencode.v49.md):
 
 </div>
 
