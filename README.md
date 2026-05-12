@@ -1,4 +1,4 @@
-# lkparq: Experimental R package with a TxDb-like resource for Gencode V49 for humans
+# TxParq.Hs.gencode.v49: Experimental R package with a TxDb-like resource for Gencode V49 for humans
 
 This package was heavily negotiated with Claude chat Opus 4.5 extended in March 2026.
 
