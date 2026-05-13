@@ -37,11 +37,13 @@ import pyarrow.parquet as pq
 def parse_attributes(attr_string: str) -> dict:
     """Parse GTF attribute string into dictionary."""
     attrs = {}
-    # Match: key "value" or key value
-    pattern = r'(\S+)\s+"([^"]*)"'
-    
+    # Match quoted values (key "value") or unquoted values (key value;)
+    # level, exon_number, and frame appear unquoted in GENCODE GTF
+    pattern = r'(\w+)\s+(?:"([^"]*?)"|([^";]+?))\s*;'
+
     for match in re.finditer(pattern, attr_string):
-        key, value = match.groups()
+        key, quoted_val, unquoted_val = match.groups()
+        value = quoted_val if quoted_val is not None else unquoted_val.strip()
         # Handle multiple tags by collecting into list
         if key in attrs:
             if isinstance(attrs[key], list):
@@ -50,7 +52,7 @@ def parse_attributes(attr_string: str) -> dict:
                 attrs[key] = [attrs[key], value]
         else:
             attrs[key] = value
-    
+
     return attrs
 
 
