@@ -228,21 +228,33 @@ head(pc_promoters)
 # Performance Tips
 
 - Use filters to reduce data loaded
+```
     genes(gtf, filter = list(chrom = "chr1"))  # Fast
     genes(gtf)[seqnames(genes(gtf)) == "chr1"] # Slower (loads all first)
+```
 
 - Select only columns you need
+```
     genes(gtf, columns = c("gene_name", "gene_type"))
+```
 
 - Use versioned IDs when you need them
+```
     genes(gtf, use_versioned_ids = TRUE)  # ENSG00000290825.2
     genes(gtf, use_versioned_ids = FALSE) # ENSG00000290825 (default)
+```
 
 -  For large operations, consider working with the Parquet directly
-```
-    library(arrow)
-    genes_tbl <- open_dataset("parquet_output/genes.parquet")
-    genes_tbl |> filter(gene_type == "protein_coding") |> collect()
+
+We have different field names for different components.
+
+```{r lkpp}
+library(arrow)
+ds = open_dataset(parqloc)
+getflds = function(x) { open_dataset(x) |> names() }
+uu = sapply(ds$files, getflds, USE.NAMES=TRUE)
+names(uu) = sapply(names(uu), basename)
+uu
 ```
 
 # Session information
