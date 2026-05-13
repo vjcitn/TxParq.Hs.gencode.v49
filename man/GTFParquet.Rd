@@ -16,7 +16,7 @@ A GTFParquet S4 object
 Create a GTFParquet object
 }
 \examples{
-gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 genes(gtf)
 genes(gtf, filter = list(gene_type = "protein_coding"))
 }

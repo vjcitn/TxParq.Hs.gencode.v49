@@ -23,7 +23,7 @@ Helper functions to quickly extract genes of common biotypes.
 }
 \examples{
 \dontrun{
-gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 pc <- protein_coding_genes(gtf)
 lnc <- lncRNA_genes(gtf)
 }

@@ -31,7 +31,7 @@ for efficiency), then compute overlaps using \code{findOverlaps}.
 }
 \examples{
 \dontrun{
-gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Define a query region
 region <- GRanges("chr1", IRanges(1000000, 2000000))

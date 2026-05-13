@@ -62,7 +62,7 @@ large annotation files.
 }
 \examples{
 \dontrun{
-gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Exons grouped by transcript (sorted by exon_number)
 ebt <- exonsBy(gtf, by = "tx")

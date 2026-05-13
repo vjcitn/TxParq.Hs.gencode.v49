@@ -72,7 +72,7 @@ Available filter columns include:
 }
 \examples{
 \dontrun{
-gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Extract all genes with full attributes
 gr <- genes(gtf)

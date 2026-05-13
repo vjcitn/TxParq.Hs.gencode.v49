@@ -21,7 +21,7 @@ Query the available biotypes in the annotation and their counts.
 }
 \examples{
 \dontrun{
-gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 gene_types(gtf)
 # protein_coding      lncRNA     pseudogene ...
 #         19950        16880          15200 ...

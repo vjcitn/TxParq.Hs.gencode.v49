@@ -53,7 +53,7 @@ All methods support a \code{filter} argument for efficient querying
 \examples{
 \dontrun{
 # Create from Parquet directory
-gtf <- GTFParquet(system.file("gc49", package="lkparq"))
+gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Extract genes with full attributes
 gr <- genes(gtf)
