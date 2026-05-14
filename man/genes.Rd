@@ -71,12 +71,11 @@ Available filter columns include:
 }
 }
 \examples{
-\dontrun{
 gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Extract all genes with full attributes
 gr <- genes(gtf)
-mcols(gr)  # gene_name, gene_type, level, tags, source, havana_gene
+S4Vectors::mcols(gr)  # gene_name, gene_type, level, tags, source, havana_gene
 
 # Filter by gene type
 pc <- genes(gtf, filter = list(gene_type = "protein_coding"))
@@ -94,15 +93,15 @@ names(gr)[1]  # "ENSG00000141510.18"
 
 # Transcripts with support level
 tx <- transcripts(gtf)
-high_conf <- tx[mcols(tx)$transcript_support_level == "1"]
+# note that transcript_support_level is frequently missing
+high_conf <- tx[na.omit(S4Vectors::mcols(tx)$transcript_support_level) == "1"]
 
 # Exons
 ex <- exons(gtf, filter = list(chrom = "chr1"))
 
 # CDS with protein IDs
 cds_gr <- cds(gtf)
-mcols(cds_gr)$protein_id
-}
+S4Vectors::mcols(cds_gr)$protein_id
 
 }
 \seealso{

@@ -61,7 +61,6 @@ data is loaded into R, which can dramatically improve performance for
 large annotation files.
 }
 \examples{
-\dontrun{
 gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Exons grouped by transcript (sorted by exon_number)
@@ -77,13 +76,12 @@ cbt <- cdsBy(gtf, by = "tx")
 # Transcripts grouped by gene
 tbg <- transcriptsBy(gtf, by = "gene")
 
-# Filter to protein-coding only
-pc_exons <- exonsBy(gtf, by = "tx", 
-                    filter = list(gene_type = "protein_coding"))
+## Filter to protein-coding only - no, gene_type not available - FIXME?
+#pc_exons <- exonsBy(gtf, by = "tx", 
+#                    filter = list(gene_type = "protein_coding"))
 
 # Filter by chromosome
 chr1_cds <- cdsBy(gtf, by = "tx", filter = list(chrom = "chr1"))
-}
 
 }
 \seealso{

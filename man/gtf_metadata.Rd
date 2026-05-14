@@ -17,11 +17,9 @@ Retrieve metadata from the GTF file header, including provider,
 version, date, and genome build.
 }
 \examples{
-\dontrun{
 gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 gtf_metadata(gtf)
 #      provider         format           date         genome 
 #      "GENCODE"          "gtf"   "2025-07-08"       "GRCh38"
-}
 
 }

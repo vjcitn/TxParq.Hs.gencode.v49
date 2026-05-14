@@ -1,6 +1,6 @@
 Package: TxParq.Hs.gencode.v49
 Title: Parquet-based representation of GENCODE gene models v49 for Homo sapiens
-Version: 0.99.1
+Version: 0.99.2
 Authors@R:
     person(given = "Vince",
            family = "Carey",
@@ -11,11 +11,11 @@ Description: This is a parquet-based representation of GENCODE gene models v49 f
     Parquet is chosen to reduce footprint, to support tidyverse-oriented operations
     natively, and to provide opportunities for cloud-backed annotation services.
     Community contributions to functionality and architecture are welcome.
-Depends: R (>= 4.6.0), tools, utils
+Depends: R (>= 4.6.0), utils
 Suggests: knitr, BiocStyle, testthat, rmarkdown
-Imports: dplyr, duckdb, arrow, GenomicRanges, GenomeInfoDb, stats,
+Imports: dplyr, arrow, GenomicRanges, GenomeInfoDb, stats,
 	GenomicFeatures, IRanges, methods, S4Vectors
-License: Artistic-2.0
+License: MIT + file LICENSE
 VignetteBuilder: knitr
 biocViews: Infrastructure
 Encoding: UTF-8

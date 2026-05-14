@@ -51,17 +51,15 @@ All methods support a \code{filter} argument for efficient querying
 }}
 
 \examples{
-\dontrun{
 # Create from Parquet directory
 gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Extract genes with full attributes
 gr <- genes(gtf)
-mcols(gr)  # gene_name, gene_type, level, tags, etc.
+S4Vectors::mcols(gr)  # gene_name, gene_type, level, tags, etc.
 
 # Filter by gene type
 pc <- genes(gtf, filter = list(gene_type = "protein_coding"))
-}
 
 }
 \seealso{
@@ -72,5 +70,5 @@ pc <- genes(gtf, filter = list(gene_type = "protein_coding"))
   \item \code{\link[GenomicFeatures]{TxDb}} for comparison with TxDb objects
 }
 
-\code{\link[GenomeInfoDb]{seqinfo}}
+\code{\link[Seqinfo]{seqinfo}}
 }

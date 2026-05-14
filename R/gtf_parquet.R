@@ -1,4 +1,8 @@
 
+utils::globalVariables(c("gene_type", ".data", ".chrom", "exon_number",
+   "feature_type", "chrom", "gene_id_stripped"))
+
+
 # =============================================================================
 # S4 Class Definition
 # =============================================================================
@@ -10,6 +14,7 @@
 #' @import GenomicFeatures
 #' @import S4Vectors
 #' @import IRanges
+#' @importFrom stats setNames
 #' @importFrom arrow read_parquet open_dataset
 #' @importFrom dplyr select filter collect arrange any_of pull distinct
 #' @description
@@ -45,17 +50,15 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
 #' # Create from Parquet directory
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' 
 #' # Extract genes with full attributes
 #' gr <- genes(gtf)
-#' mcols(gr)  # gene_name, gene_type, level, tags, etc.
+#' S4Vectors::mcols(gr)  # gene_name, gene_type, level, tags, etc.
 #' 
 #' # Filter by gene type
 #' pc <- genes(gtf, filter = list(gene_type = "protein_coding"))
-#' }
 #'
 #' @exportClass GTFParquet
 setClass("GTFParquet",
@@ -119,6 +122,8 @@ GTFParquet <- function(path) {
 }
 
 
+#' printer for GTFParquet
+#' @param object instance of GTFParquet
 #' @export
 setMethod("show", "GTFParquet", function(object) {
   cat("GTFParquet object\n")
@@ -227,12 +232,11 @@ setMethod("genome", "GTFParquet", function(x) {
 #' }
 #'
 #' @examples
-#' \dontrun{
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #'
 #' # Extract all genes with full attributes
 #' gr <- genes(gtf)
-#' mcols(gr)  # gene_name, gene_type, level, tags, source, havana_gene
+#' S4Vectors::mcols(gr)  # gene_name, gene_type, level, tags, source, havana_gene
 #'
 #' # Filter by gene type
 #' pc <- genes(gtf, filter = list(gene_type = "protein_coding"))
@@ -250,15 +254,15 @@ setMethod("genome", "GTFParquet", function(x) {
 #'
 #' # Transcripts with support level
 #' tx <- transcripts(gtf)
-#' high_conf <- tx[mcols(tx)$transcript_support_level == "1"]
+#' # note that transcript_support_level is frequently missing
+#' high_conf <- tx[na.omit(S4Vectors::mcols(tx)$transcript_support_level) == "1"]
 #'
 #' # Exons
 #' ex <- exons(gtf, filter = list(chrom = "chr1"))
 #'
 #' # CDS with protein IDs
 #' cds_gr <- cds(gtf)
-#' mcols(cds_gr)$protein_id
-#' }
+#' S4Vectors::mcols(cds_gr)$protein_id
 #'
 #' @rdname genes
 #' @export
@@ -482,7 +486,6 @@ setMethod("cds", "GTFParquet", function(x, columns = NULL, filter = NULL) {
 #' }
 #'
 #' @examples
-#' \dontrun{
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #'
 #' # Exons grouped by transcript (sorted by exon_number)
@@ -498,13 +501,12 @@ setMethod("cds", "GTFParquet", function(x, columns = NULL, filter = NULL) {
 #' # Transcripts grouped by gene
 #' tbg <- transcriptsBy(gtf, by = "gene")
 #'
-#' # Filter to protein-coding only
-#' pc_exons <- exonsBy(gtf, by = "tx", 
-#'                     filter = list(gene_type = "protein_coding"))
+#' ## Filter to protein-coding only - no, gene_type not available - FIXME?
+#' #pc_exons <- exonsBy(gtf, by = "tx", 
+#' #                    filter = list(gene_type = "protein_coding"))
 #'
 #' # Filter by chromosome
 #' chr1_cds <- cdsBy(gtf, by = "tx", filter = list(chrom = "chr1"))
-#' }
 #'
 #' @rdname transcriptsBy
 #' @export
@@ -615,7 +617,7 @@ setMethod("transcriptsBy", "GTFParquet", function(x, by = "gene", filter = NULL)
 #' @param x A \code{\link{GTFParquet}} object.
 #' @return A \link[GenomeInfoDb]{Seqinfo} object containing chromosome names
 #'   and genome build.
-#' @seealso \code{\link[GenomeInfoDb]{seqinfo}}
+#' @seealso \code{\link[Seqinfo]{seqinfo}}
 #' @rdname GTFParquet-class
 #' @export
 setMethod("seqinfo", "GTFParquet", function(x) {
@@ -667,7 +669,6 @@ setMethod("seqinfo", "GTFParquet", function(x) {
 #'   including \code{feature_type}, \code{transcript_id}, and \code{gene_id}.
 #'
 #' @examples
-#' \dontrun{
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' 
 #' # 5' UTRs
@@ -681,7 +682,6 @@ setMethod("seqinfo", "GTFParquet", function(x) {
 #' 
 #' # Stop codons
 #' stop <- codons(gtf, type = "stop")
-#' }
 #'
 #' @rdname utrs
 #' @export
@@ -802,11 +802,9 @@ setMethod("codons", "GTFParquet", function(x, type = c("both", "start", "stop"),
 #' @return A \link[GenomicRanges]{GRanges} object.
 #'
 #' @examples
-#' \dontrun{
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' pc <- protein_coding_genes(gtf)
 #' lnc <- lncRNA_genes(gtf)
-#' }
 #'
 #' @name convenience-functions
 #' @rdname convenience-functions
@@ -833,14 +831,12 @@ lncRNA_genes <- function(x, ...) {
 #' @return A table of biotype counts.
 #'
 #' @examples
-#' \dontrun{
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' gene_types(gtf)
 #' # protein_coding      lncRNA     pseudogene ...
 #' #         19950        16880          15200 ...
 #' 
 #' transcript_types(gtf)
-#' }
 #'
 #' @name biotype-queries
 #' @rdname biotype-queries
@@ -879,12 +875,10 @@ transcript_types <- function(x) {
 #' @return A named character vector of metadata key-value pairs.
 #'
 #' @examples
-#' \dontrun{
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' gtf_metadata(gtf)
 #' #      provider         format           date         genome 
 #' #      "GENCODE"          "gtf"   "2025-07-08"       "GRCh38"
-#' }
 #'
 #' @export
 gtf_metadata <- function(x) {
@@ -919,11 +913,10 @@ gtf_metadata <- function(x) {
 #' for efficiency), then compute overlaps using \code{findOverlaps}.
 #'
 #' @examples
-#' \dontrun{
 #' gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 #' 
 #' # Define a query region
-#' region <- GRanges("chr1", IRanges(1000000, 2000000))
+#' region <- GenomicRanges::GRanges("chr1", IRanges::IRanges(1000000, 2000000))
 #' 
 #' # Find overlapping genes
 #' genes_in_region(gtf, region)
@@ -931,7 +924,6 @@ gtf_metadata <- function(x) {
 #' # Find overlapping transcripts (protein-coding only)
 #' transcripts_in_region(gtf, region, 
 #'                       filter = list(transcript_type = "protein_coding"))
-#' }
 #'
 #' @name region-queries
 #' @rdname region-queries
@@ -952,8 +944,12 @@ genes_in_region <- function(x, region, ...) {
 transcripts_in_region <- function(x, region, ...) {
   stopifnot(inherits(region, "GRanges"))
   
-  chroms <- as.character(unique(seqnames(region)))
-  all_tx <- transcripts(x, filter = list(chrom = chroms), ...)
+# FIXME: THIS WAS PRODUCED BY CLAUDE BUT FAILS
+# IF USER SUPPLIES filter as an argument
+#  chroms <- as.character(unique(seqnames(region)))
+#  all_tx <- transcripts(x, filter = list(chrom = chroms), ...)
+# FOR NOW, WE LOSE THE EFFICIENCY OF FILTERING TO CHROMOSOMES IN REGION
+  all_tx <- transcripts(x, ...)
   
   hits <- findOverlaps(all_tx, region)
   all_tx[queryHits(hits)]

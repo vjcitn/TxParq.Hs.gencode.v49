@@ -30,11 +30,10 @@ These functions first filter by chromosome (using Parquet predicate pushdown
 for efficiency), then compute overlaps using \code{findOverlaps}.
 }
 \examples{
-\dontrun{
 gtf <- GTFParquet(system.file("gc49", package="TxParq.Hs.gencode.v49"))
 
 # Define a query region
-region <- GRanges("chr1", IRanges(1000000, 2000000))
+region <- GenomicRanges::GRanges("chr1", IRanges::IRanges(1000000, 2000000))
 
 # Find overlapping genes
 genes_in_region(gtf, region)
@@ -42,6 +41,5 @@ genes_in_region(gtf, region)
 # Find overlapping transcripts (protein-coding only)
 transcripts_in_region(gtf, region, 
                       filter = list(transcript_type = "protein_coding"))
-}
 
 }
