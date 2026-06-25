@@ -1,6 +1,6 @@
 Package: TxParq.Hs.gencode.v49
 Title: Parquet-based representation of GENCODE gene models v49 for Homo sapiens
-Version: 0.99.2
+Version: 0.99.3
 Authors@R:
     person(given = "Vince",
            family = "Carey",

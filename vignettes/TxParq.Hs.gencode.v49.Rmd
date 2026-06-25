@@ -80,21 +80,26 @@ gene_types(gtf)
 
 ```{r lkfilt2}
 verified_genes <- genes(gtf, filter = list(level = 1))
+verified_genes |> length()
 
 # Filter by source (HAVANA = manual, ENSEMBL = automatic)
 manual_genes <- genes(gtf, filter = list(source = "HAVANA"))
+manual_genes |> length()
 
 # Filter by tags
-# Common tags: basic, CCDS, overlaps_pseudogene, etc.
+# Common tags: overlapping_locus, ncRNA_host, ...
 # Note: tags is a semicolon-separated string, so use grep for complex filters
 all_genes <- genes(gtf)
-basic_genes <- all_genes[grep("basic", mcols(all_genes)$tags)]
+ncRNA_host_genes <- all_genes[grep("ncRNA_host", mcols(all_genes)$tags)]
+ncRNA_host_genes |> length()
 
 # Combine filters
 chr1_protein_coding <- genes(gtf, filter = list(
   chrom = "chr1",
   gene_type = "protein_coding"
 ))
+chr1_protein_coding |> mcols() |> as.data.frame() |>
+    select(tags) |> unlist() |> table() |> sort() |> tail(20)
 ```
 
 # Rich Transcript Queries
